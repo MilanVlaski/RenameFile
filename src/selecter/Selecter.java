@@ -2,17 +2,38 @@ package selecter;
 
 public class Selecter {
 
-	public int[] selectName(String nameWithExtension) {
-		
-		int[] result = new int[2];
-		result[0] = 0;
-		for(int i = 0; i < nameWithExtension.length(); i++) {
-			if(nameWithExtension.charAt(i) == '.')
-				result[1] = i;
-		}
-		
-		return result;
+	int lowIndex = 0;
+	int highIndex;
+	String word;
+	
+	public String getWord() {
+		return word;
 	}
 
+	public void setWord(String word) {
+		highIndex = word.length();
+		this.word = word;
+	}
+	
+	public int[] getResult() {
+		return new int[] {lowIndex, highIndex};
+	}
+
+	public void removeExtension() {
+		for(int i = word.length() - 1; i >= 0; i--) {
+			if(word.charAt(i) == '.') {
+				highIndex = i;
+				break;
+			}
+		}
+	}
+
+	public void removeDirs() {
+		
+		for(int i = 0; i < word.length(); i++) {
+			if(word.charAt(i) == '/')
+				lowIndex = i + 1;
+		}
+	}
 	
 }

@@ -3,3 +3,6 @@ identican json sa stringovima i nizom sa 2 inta.
 
 Za ulazni string treba vratiti niz od dva integera.
 
+1. Ukloniti ekstenziju.
+2. Ukloniti direktorijume.
+3. Ukloniti kljucne rijeci.

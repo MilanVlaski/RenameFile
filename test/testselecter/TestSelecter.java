@@ -19,20 +19,62 @@ class TestSelecter {
 	@Test
 	void shouldReturnZeroAndOneIfExtension() {
 		int[] expected = {0, 1};
-		assertArrayEquals(expected, selecter.selectName("a.b"));
+		
+		selecter.setWord("a.b");
+		selecter.removeExtension();
+		
+		assertArrayEquals(expected, selecter.getResult());
 	}
 	
 	@Test
-	void shouldReturnZeroZerpIfNoExtension() {
-		int[] expected = {0, 0};
-		assertArrayEquals(expected, selecter.selectName("a"));
+	void shouldReturnZeroOneIfNoExtension() {
+		int[] expected = {0, 1};
+		
+		selecter.setWord("a");
+		selecter.removeExtension();
+		
+		assertArrayEquals(expected, selecter.getResult());
 	}
 	
 	@Test
-	void shouldReturnZeroZeroIfEmptyString() {
+	void shouldReturnZeroOneIfEmptyString() {
 		int[] expected = {0, 0};
-		assertArrayEquals(expected, selecter.selectName(""));
+		
+		selecter.setWord("");
+		selecter.removeExtension();
+		
+		assertArrayEquals(expected, selecter.getResult());
 	}
 
+	@Test
+	void shouldReturnIndexAfterDir() {
+		int[] expected = {2, 3};
+		
+		selecter.setWord("a/b");
+		selecter.removeDirs();
+		
+		assertArrayEquals(expected, selecter.getResult());
+	}
+	
+	@Test
+	void shouldReturnIndexAfterTwoDirs() {
+		int[] expected = {4, 5};
+		
+		selecter.setWord("a/b/c");
+		selecter.removeDirs();
+		
+		assertArrayEquals(expected, selecter.getResult());
+	}
+	
+	@Test
+	void shouldReturnIndexIfExtensionAndDir() {
+		int[] expected = {2, 3};
+		
+		selecter.setWord("a/b.c");
+		selecter.removeExtension();
+		selecter.removeDirs();
+		
+		assertArrayEquals(expected, selecter.getResult());
+	}
 
 }
