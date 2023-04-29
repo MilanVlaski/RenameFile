@@ -1,0 +1,5 @@
+Za niz stringova dobijen iz ulaznog jsona treba vratiti
+identican json sa stringovima i nizom sa 2 inta.
+
+Za ulazni string treba vratiti niz od dva integera.
+
