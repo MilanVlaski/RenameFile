@@ -71,5 +71,31 @@ class TestSelecter {
 		assertArrayEquals(new int[]{2, 3}, selecter.getResult());
 	}
 	
+	@Test
+	void shouldGetIndexAfterTest() {
+		
+		selecter.setWord("testA");
+		assertEquals(4, selecter.getIndexAfterKeyword("test"));
+	}
+	
+	@Test
+	void shouldGetIndexBeforeTest() {
+		
+		selecter.setWord("aTest");
+		assertEquals(1, selecter.getIndexAfterKeyword("test"));
+	}
+	
+	@Test
+	void shouldBeTrueIfSeparator() {
+		selecter.setWord("_");
+		assertEquals(true, selecter.existsSeparatorAtIndex(0));
+	}
+	
+	@Test
+	void shouldBeFalseIfNotSeparator() {
+		selecter.setWord("a");
+		assertEquals(false, selecter.existsSeparatorAtIndex(0));
+	}
+	
 
 }

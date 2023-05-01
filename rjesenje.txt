@@ -3,6 +3,12 @@ identican json sa stringovima i nizom sa 2 inta.
 
 Za ulazni string treba vratiti niz od dva integera.
 
-1. Ukloniti ekstenziju.
-2. Ukloniti direktorijume.
-3. Ukloniti kljucne rijeci.
+Ukloniti ekstenziju.
+Ukloniti direktorijume.
+Ukloniti kljucne rijeci.
+	Regex da prepozna kljucne rijeci
+	i provjeri da li ima separatora prije il poslije.
+	(Probaj omoguciti bilo koju kljucnu rijec)
+	Tamo gdje je prepoznata zapamti x.
+	if x == lowIndex, lowIndex = x + keywordLength
+	else highIndex = x
