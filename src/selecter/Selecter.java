@@ -64,6 +64,13 @@ public class Selecter {
 		
 		return result;
 	}
+	
+	public void setIndexAfterAnyKeyword() {
+		
+		for (String s : keyword) {
+			setIndexToSkipKeyword(s);
+		}
+	}
 
 	public int getIndexAfterKeyword(String keyword) {
 		//make it case insensitive
@@ -101,7 +108,7 @@ public class Selecter {
 		return result;
 	}
 
-	public void setIndexToSkipKeyword(String keyword) {
+	public boolean setIndexToSkipKeyword(String keyword) {
 		
 		String word1 = word.toLowerCase();
 		String keyword1 = keyword.toLowerCase();
@@ -124,7 +131,9 @@ public class Selecter {
 				}
 				setHighIndex(indexOfKeyword);
 			}
+			return true;
 		}
+		return false;
 	}
 	
 }

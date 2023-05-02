@@ -88,29 +88,33 @@ class TestSelecter {
 	}
 	
 	@Test
-	void shouldGetIndexBeforeSeparatorAndTest() {
+	void shouldSetHighIndexToOneIfWordEndsWithUnderscoreTest() {
 		
 		selecter.setWord("a_test");
-		assertEquals(1, selecter.getIndexAfterKeyword("test"));
+		selecter.setIndexToSkipKeyword("test");
+		assertEquals(1, selecter.getHighIndex());
 	}
 	
 	@Test
-	void shouldGetIndexAfterTestAndSeparator() {
+	void shouldSetLowIndexToFiveIfWordStartsWithTestUnderscore() {
 		
 		selecter.setWord("test_A");
-		assertEquals(5, selecter.getIndexAfterKeyword("test"));
+		selecter.setIndexToSkipKeyword("test");
+		assertEquals(5, selecter.getLowIndex());
 	}
 	
 	@Test
-	void shouldReturnFourAfterSpecUnderscore() {
+	void shouldReturnFiveAfterSpecUnderscore() {
 		selecter.setWord("spec_A");
-		assertEquals(5, selecter.getIndexAfterAnyKeyword());
+		selecter.setIndexAfterAnyKeyword();
+		assertEquals(5, selecter.getLowIndex());
 	}
 	
 	@Test
 	void shouldReturnMinusOneIfNoKeywords() {
 		selecter.setWord("abc");
-		assertEquals(-1, selecter.getIndexAfterAnyKeyword());
+		selecter.setIndexAfterAnyKeyword();
+		assertArrayEquals(new int[] {0, 3}, selecter.getResult());
 	}
 	
 	@Test
