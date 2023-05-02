@@ -72,7 +72,7 @@ class TestSelecter {
 	}
 	
 	@Test
-	void shouldSetLowIndexToFour() {
+	void shouldSetLowIndexToFourIfWordStartsWithTest() {
 		
 		selecter.setWord("testA");
 		selecter.setIndexToSkipKeyword("test");
@@ -80,10 +80,11 @@ class TestSelecter {
 	}
 	
 	@Test
-	void shouldGetIndexBeforeTest() {
+	void shouldSetHighIndexToOneIfWordEndsWithTest() {
 		
 		selecter.setWord("aTest");
-		assertEquals(1, selecter.getIndexAfterKeyword("test"));
+		selecter.setIndexToSkipKeyword("test");
+		assertEquals(1, selecter.getHighIndex());
 	}
 	
 	@Test
