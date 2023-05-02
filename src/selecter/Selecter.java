@@ -17,6 +17,19 @@ public class Selecter {
 		highIndex = word.length();
 		this.word = word;
 	}
+
+	public int getLowIndex() {
+		return lowIndex;
+	}
+	public void setLowIndex(int lowIndex) {
+		this.lowIndex = lowIndex;
+	}
+	public int getHighIndex() {
+		return highIndex;
+	}
+	public void setHighIndex(int highIndex) {
+		this.highIndex = highIndex;
+	}
 	
 	public int[] getResult() {
 		return new int[] {lowIndex, highIndex};
@@ -86,6 +99,32 @@ public class Selecter {
 		}
 		
 		return result;
+	}
+
+	public void setIndexToSkipKeyword(String keyword) {
+		
+		String word1 = word.toLowerCase();
+		String keyword1 = keyword.toLowerCase();
+		
+		int indexOfKeyword = word1.indexOf(keyword1, lowIndex);
+		
+		if(indexOfKeyword != -1) {
+			
+			if(indexOfKeyword == lowIndex) {
+				indexOfKeyword = lowIndex + keyword1.length();
+				
+				if(existsSeparatorAtIndex(indexOfKeyword)) {
+					indexOfKeyword++;
+				}
+				setLowIndex(indexOfKeyword);
+			} 
+			else {
+				if(existsSeparatorAtIndex(indexOfKeyword - 1)) {
+					indexOfKeyword--;
+				}
+				setHighIndex(indexOfKeyword);
+			}
+		}
 	}
 	
 }
