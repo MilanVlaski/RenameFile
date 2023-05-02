@@ -118,6 +118,12 @@ class TestSelecter {
 	}
 	
 	@Test
+	void shouldSetResultFourNineIfWordWithDirExtensionAndKeyword() {
+		selecter.setResult("src/Hiker_spec.re");
+		assertArrayEquals(new int[] {4, 9}, selecter.getResult());
+	}
+	
+	@Test
 	void shouldBeTrueIfSeparator() {
 		selecter.setWord("_");
 		assertEquals(true, selecter.existsSeparatorAtIndex(0));

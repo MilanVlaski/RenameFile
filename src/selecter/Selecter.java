@@ -34,6 +34,14 @@ public class Selecter {
 	public int[] getResult() {
 		return new int[] {lowIndex, highIndex};
 	}
+	
+	public void setResult(String word) {
+		setWord(word);
+		
+		removeDirs();
+		removeExtension();
+		setIndexAfterAnyKeyword();
+	}
 
 	public void removeExtension() {
 		for(int i = word.length() - 1; i >= 0; i--) {
