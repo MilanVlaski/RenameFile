@@ -86,6 +86,32 @@ class TestSelecter {
 	}
 	
 	@Test
+	void shouldGetIndexBeforeSeparatorAndTest() {
+		
+		selecter.setWord("a_test");
+		assertEquals(1, selecter.getIndexAfterKeyword("test"));
+	}
+	
+	@Test
+	void shouldGetIndexAfterTestAndSeparator() {
+		
+		selecter.setWord("test_A");
+		assertEquals(5, selecter.getIndexAfterKeyword("test"));
+	}
+	
+	@Test
+	void shouldReturnFourAfterSpecUnderscore() {
+		selecter.setWord("spec_A");
+		assertEquals(5, selecter.getIndexAfterAnyKeyword());
+	}
+	
+	@Test
+	void shouldReturnMinusOneIfNoKeywords() {
+		selecter.setWord("abc");
+		assertEquals(-1, selecter.getIndexAfterAnyKeyword());
+	}
+	
+	@Test
 	void shouldBeTrueIfSeparator() {
 		selecter.setWord("_");
 		assertEquals(true, selecter.existsSeparatorAtIndex(0));
@@ -96,6 +122,8 @@ class TestSelecter {
 		selecter.setWord("a");
 		assertEquals(false, selecter.existsSeparatorAtIndex(0));
 	}
+	
+	
 	
 
 }
