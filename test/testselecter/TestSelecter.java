@@ -73,7 +73,6 @@ class TestSelecter {
 	
 	@Test
 	void shouldSetLowIndexToFourIfWordStartsWithTest() {
-		
 		selecter.setWord("testA");
 		selecter.setIndexToSkipKeyword("test");
 		assertEquals(4, selecter.getLowIndex());
@@ -81,7 +80,6 @@ class TestSelecter {
 	
 	@Test
 	void shouldSetHighIndexToOneIfWordEndsWithTest() {
-		
 		selecter.setWord("aTest");
 		selecter.setIndexToSkipKeyword("test");
 		assertEquals(1, selecter.getHighIndex());
@@ -89,7 +87,6 @@ class TestSelecter {
 	
 	@Test
 	void shouldSetHighIndexToOneIfWordEndsWithUnderscoreTest() {
-		
 		selecter.setWord("a_test");
 		selecter.setIndexToSkipKeyword("test");
 		assertEquals(1, selecter.getHighIndex());
@@ -97,7 +94,6 @@ class TestSelecter {
 	
 	@Test
 	void shouldSetLowIndexToFiveIfWordStartsWithTestUnderscore() {
-		
 		selecter.setWord("test_A");
 		selecter.setIndexToSkipKeyword("test");
 		assertEquals(5, selecter.getLowIndex());

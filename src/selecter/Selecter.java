@@ -44,24 +44,20 @@ public class Selecter {
 	}
 
 	public void removeExtension() {
-		for(int i = word.length() - 1; i >= 0; i--) {
-			if(word.charAt(i) == '.') {
+		for(int i = highIndex - 1; i >= 0; i--) {
+			if(word.charAt(i) == '.')
 				highIndex = i;
-				break;
-			}
 		}
 	}
 
 	public void removeDirs() {
-		
-		for(int i = 0; i < word.length(); i++) {
+		for(int i = 0; i < highIndex; i++) {
 			if(word.charAt(i) == '/')
 				lowIndex = i + 1;
 		}
 	}
 	
 	public void setIndexAfterAnyKeyword() {
-		
 		for (String s : keyword) {
 			setIndexToSkipKeyword(s);
 		}
@@ -77,11 +73,12 @@ public class Selecter {
 		if(indexOfKeyword != -1) {
 			
 			if(indexOfKeyword == lowIndex) {
+				
 				indexOfKeyword = lowIndex + keyword1.length();
 				
-				if(existsSeparatorAtIndex(indexOfKeyword)) {
+				if(existsSeparatorAtIndex(indexOfKeyword))
 					indexOfKeyword++;
-				}
+				
 				setLowIndex(indexOfKeyword);
 			} 
 			else {
@@ -96,7 +93,6 @@ public class Selecter {
 	public boolean existsSeparatorAtIndex(int index) {
 		
 		boolean result = false;
-		
 		for (char c : separators) {
 			if(word.charAt(index) == c) {
 				result = true;
