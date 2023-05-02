@@ -52,19 +52,6 @@ public class Selecter {
 		}
 	}
 	
-	public int getIndexAfterAnyKeyword() {
-		
-		int result = -1;
-		
-		for (String s : keyword) {
-			int index = getIndexAfterKeyword(s);
-			if(index != -1)
-				result = index;
-		}
-		
-		return result;
-	}
-	
 	public void setIndexAfterAnyKeyword() {
 		
 		for (String s : keyword) {
@@ -72,43 +59,7 @@ public class Selecter {
 		}
 	}
 
-	public int getIndexAfterKeyword(String keyword) {
-		//make it case insensitive
-		String word1 = word.toLowerCase();
-		String keyword1 = keyword.toLowerCase();
-		
-		int result = word1.indexOf(keyword1, lowIndex);
-		
-		if(result != -1) {
-			
-			if(result == lowIndex) {
-				result = lowIndex + keyword1.length();
-				if(existsSeparatorAtIndex(result))
-					result++;
-			} 
-			else if(existsSeparatorAtIndex(result - 1)) {
-				result--;
-			}
-		}
-		
-		return result;
-	}
-	
-	public boolean existsSeparatorAtIndex(int index) {
-		
-		boolean result = false;
-		
-		for (char c : separators) {
-			if(word.charAt(index) == c) {
-				result = true;
-				break;
-			}
-		}
-		
-		return result;
-	}
-
-	public boolean setIndexToSkipKeyword(String keyword) {
+	public void setIndexToSkipKeyword(String keyword) {
 		
 		String word1 = word.toLowerCase();
 		String keyword1 = keyword.toLowerCase();
@@ -131,9 +82,20 @@ public class Selecter {
 				}
 				setHighIndex(indexOfKeyword);
 			}
-			return true;
-		}
-		return false;
+		}	
 	}
 	
+	public boolean existsSeparatorAtIndex(int index) {
+		
+		boolean result = false;
+		
+		for (char c : separators) {
+			if(word.charAt(index) == c) {
+				result = true;
+				break;
+			}
+		}
+		
+		return result;
+	}
 }
